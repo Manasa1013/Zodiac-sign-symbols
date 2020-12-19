@@ -18,12 +18,12 @@ const emojiSymbolDictionary = {
 };
 
 export default function App() {
-  var [emojiMeaning, setEmojiMeaning] = useState("");
+  var [emojiMeaning, setEmojiMeaning] = useState("Sign name appears here!");
   function emojiInputHandler(event) {
     var userEmojiInput = event.target.value;
     emojiMeaning = emojiSymbolDictionary[userEmojiInput];
     if (emojiMeaning === undefined) {
-      emojiMeaning = "Oops!!try emojis only from this list";
+      emojiMeaning = "Oops!!try signs only from the list";
     }
     setEmojiMeaning(emojiMeaning);
   }
@@ -32,60 +32,83 @@ export default function App() {
     setEmojiMeaning(emojiSymbolDictionary[emoji]);
   }
   //styling
-  function styleEmoji() {
-    const manStyle = {
-      padding: "1rem 2rem",
-      margin: "2rem",
-      textDecoration: "none",
-      cursor: "pointer",
-      margin: "5px",
-      display: "inline",
-      textAlign: "none",
-      overflow: "hidden",
-      fontSize: "2rem"
-    };
-    return manStyle;
-  }
+  const styleEmoji = {
+    padding: "0.5rem",
+    margin: "0.1rem",
+    textDecoration: "none",
+    cursor: "pointer",
+    display: "inline",
+    overflow: "hidden",
+    fontSize: "2rem"
+  };
   return (
     <div
       className="App"
-      style={{ backgroundColor: "#009688", color: "#fffff0" }}
+      style={{
+        backgroundColor: "#ffff",
+        color: "#24292e",
+        margin: "0px"
+      }}
     >
-      <h1>Most unused symobols </h1>
+      <h1>Find zodiac sign symbol</h1>
 
-      <h3 style={{ color: "#00000099" }}>
-        Ever wondered what this emojis mean
-      </h3>
+      <h3 style={{ color: "#00000099" }}>Click on symbol to know your sign</h3>
       <input
         type="text"
         style={{
           padding: "1rem",
+          borderRadius: "1rem",
           margin: "10px",
           border: "solid 2px rgb(74,74,74)"
         }}
         onChange={emojiInputHandler}
         placeholder="Enter emoji to find meaning"
       />
-      <h2
-        style={{
-          color: "black",
-          padding: "1rem",
-          margin: "2rem"
-        }}
-      >
-        {emojiMeaning}
-      </h2>
-      <ul>
-        {listEmojiKeys.map((emoji, index) => (
-          <li
-            style={styleEmoji()}
-            key="emojis"
-            onClick={() => listItemClickHandler(emoji)}
-          >
-            {emoji}
+      <div>
+        <h2
+          style={{
+            color: "blueviolet",
+            padding: "1rem",
+            margin: "2rem"
+          }}
+        >
+          {emojiMeaning}
+        </h2>
+      </div>
+      {listEmojiKeys.map((emoji, index) => (
+        <span
+          style={styleEmoji}
+          key="emojis"
+          onClick={() => listItemClickHandler(emoji)}
+        >
+          {emoji + " "}
+        </span>
+      ))}
+
+      <footer className="footer">
+        <div className="footer-header">Let's connect on</div>
+        <ul className="social-links list-non-bullet">
+          <li className="list-item-inline">
+            <a className="link" href="https://github.com/Manasa1013">
+              <em className="fab fa-github fa-2x"></em>
+            </a>
           </li>
-        ))}
-      </ul>
+          <li className="list-item-inline">
+            <a
+              className="link"
+              href="https://www.linkedin.com/in/manasa-mandalreddy/"
+            >
+              <em className="fab fa-linkedin fa-2x"></em>
+            </a>
+          </li>
+          <li className="list-item-inline">
+            <a className="link" href="https://instagram.com/manasamandalreddy_">
+              <em className="fab fa-instagram fa-2x"></em>
+            </a>
+          </li>
+        </ul>
+        <div className="footer-copy">Copyright &copy; 2020</div>
+      </footer>
     </div>
   );
 }
